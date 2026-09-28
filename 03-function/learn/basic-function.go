@@ -83,12 +83,12 @@ func greetBrother() {
 
 // Complete Example
 
-func greet() {
-	fmt.Println("Hello, Sir")
-}
+// func greet() {
+// 	fmt.Println("Hello, Sir")
+// }
 
-func main() {
-	greet() // call the function in main function
-}
+// func main() {
+// 	greet() // call the function in main function
+// }
 
 // Output: Hello, Sir
