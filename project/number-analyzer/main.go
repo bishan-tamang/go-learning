@@ -6,7 +6,12 @@ func numberAnalyzer() {
 	var number int
 
 	fmt.Print("Enter a number:")
-	fmt.Scan(&number)
+	_, err := fmt.Scan(&number)
+
+	if err != nil {
+		fmt.Println("Please enter a valid integer.")
+		return
+	}
 
 	if number > 0 {
 		fmt.Println("postive")
@@ -22,10 +27,10 @@ func numberAnalyzer() {
 		fmt.Println("odd")
 	}
 
-	if number%5 == 0 {
-		fmt.Println("Divisible by 5")
+	if number%3 == 0 && number%5 == 0 {
+		fmt.Println("Divisible by both 3 and 5")
 	} else {
-		fmt.Println("Not Divisible by 5")
+		fmt.Println("Not Divisible by both 3 and 5")
 	}
 }
 
