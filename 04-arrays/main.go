@@ -609,3 +609,88 @@ func avoidErro() {
 // Notic that we use <, not <=.
 //	. i < len(numbers) stop before index 3.
 //	. i <= len(numbers) would eventually attempt to access invalid index .
+
+// Arrays Are Values in Go
+// In Go, assigning one array to another copies all its elementss. Changing the copied array does not change the orginal array.
+
+// Example
+func copiedArray() {
+	numbers := [4]int{10, 20, 30, 40}
+
+	copied := numbers
+
+	copied[1] = 100
+
+	fmt.Println("Orginal:", numbers)
+	fmt.Println("Copied:", copied)
+
+	// Output:
+	// Orginal: [10 20 30 40]
+	// Copied: [10 100 30 40]
+}
+
+// Why does this happen?
+// When you write:
+// Copied := numbers
+
+// Go copied every element from numbers into s seperate array called copied.
+// Orginal array: numbers
+//		10		20		30		40
+
+//				Copy all elements from orginal array
+
+// Copied array: copied
+//		10		100		30		40
+
+// Changing the copied array's second elements to 100 leaves the orginal first elements at 20.
+
+// 3. Remember this rule
+// Copied := numbers
+//	. numbers remains unchanged when you modify copied.
+//	. copied and numbers are seperate arrays.
+//	. This behavior is called value copying.
+
+// Passing Arrays to Functions
+// In Go, when you pass an array to a function, the function receives a copy of the array. Changing the copy inside the function does not change the orignal array.
+
+// Example
+func changeFirst(numbers [3]int) {
+	numbers[0] = 7
+	fmt.Println("Inside function:", numbers)
+}
+
+func main() {
+	numbers := [3]int{6, 10, 11}
+	changeFirst(numbers)
+
+	fmt.Println("Outside function", numbers)
+}
+
+// Output:
+// Inside function: 7, 10, 11
+// Outside function: 6, 10, 11
+
+// Understand step by step
+// Step 1: Create the orignal array
+//		6		10		11
+// numbers inside main()
+
+// Step 2: Call the function
+// changeFirst(numbers)
+// Go copied the aray into the function's parameters, also named numbers.
+
+// Step 3: Change the function's copy
+//		7		10		11
+// Only the copied inside changeFirst() changes.
+
+// Step 4: Print the original array
+//		6		10		11
+// The original array is still unchanged.
+
+// 3. What does [3]int mean in the function?
+// func changeFirst(number[3]int)
+//	. changeFirst is the functio name.
+//	. numbers is the parameters name.
+//	. [3]int means an array containing exactly three integers.
+
+// The array's type must match the parameter's type.
