@@ -82,6 +82,8 @@ func changeFirst(a [3]int) {
 }
 
 func main() {
+	smallestNumber()
+
 	var number int
 	fmt.Print("Enter a number:")
 	fmt.Scan(&number)
