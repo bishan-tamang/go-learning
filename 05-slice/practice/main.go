@@ -164,6 +164,110 @@ func Q13() {
 
 }
 
+// Copying slices — 10 exercises
+
+// Q14. Copy [10,20,30] into another slice using make and copy.
+func Q14() {
+	numbers := []int{10, 20, 30}
+
+	// Creating destination slice using make() build-in function
+	copiedSlice := make([]int, len(numbers))
+
+	// Copy the slice from source to desination
+	copy(copiedSlice, numbers)
+
+	fmt.Printf("Orginal slice: %v\n", numbers)
+	fmt.Printf("Copied slice: %v\n", copiedSlice)
+}
+
+// Q15. Copy [1,2,3,4], then change the first element of the copy to 99.
+func Q15() {
+	var size int
+	fmt.Print("Enter the number of elements:")
+	// Read the size from the user
+	fmt.Scan(&size)
+
+	// Create a slice of the size specified by the user
+	numbers := make([]int, size)
+
+	// Loop to take each number from the user
+	for i := 0; i < size; i++ {
+		fmt.Printf("Enter element %d: ", i+1)
+		fmt.Scan(&numbers[i])
+	}
+
+	// Creating destination slice using make() build-in function
+	copiedSlice := make([]int, len(numbers))
+
+	// Copy the slice from source to destination
+	copy(copiedSlice, numbers)
+
+	// Changing the first elements of the copy to 99
+	copiedSlice[0] = 99
+
+	fmt.Printf("Orginal slice: %v\n", numbers)
+	fmt.Printf("Copied slice: %v\n", copiedSlice)
+}
+
+// Q16. Copy [10,20,30,40,50], then change the last element of the copy to 100.
+func Q16() {
+	var size int
+	fmt.Print("Enter the number of elements: ")
+
+	// Read the size from the user
+	fmt.Scan(&size)
+
+	// Create a slice of the size specified by the user
+	numbers := make([]int, size)
+
+	// Loop to take each number from the user
+	for i := 0; i < size; i++ {
+		fmt.Printf("Enter element %d: ", i+1)
+		fmt.Scan(&numbers[i])
+	}
+
+	// Creating destination slice using make() build-in function
+	copiedSlice := make([]int, len(numbers))
+
+	// Copy the slice from source to destination
+	copy(copiedSlice, numbers)
+
+	// Change the last element of the copy to 100
+	copiedSlice[4] = 100
+
+	fmt.Printf("Original slice:%v\n", numbers)
+	fmt.Printf("Copied slice:%v\n", copiedSlice)
+}
+
+// Q17. Copy a slice and print the original length and copied length.
+func Q17() {
+	numbers := []int{10, 20, 30, 40}
+
+	copied := make([]int, len(numbers))
+
+	copy(copied, numbers)
+
+	fmt.Println("Original slice length:", len(numbers))
+	fmt.Println("Copied slice length:", len(copied))
+}
+
+// Q18. Copy [10,20,30,40,50] into a destination slice of length 3.
+func Q18() {
+	original := []int{10, 20, 30, 40, 50}
+
+	copied := make([]int, 3)
+
+	copy(copied, original)
+
+	fmt.Println("Copied slice:", copied)
+
+}
+
+// Q19. Copy [10,20,30] into a destination slice of length 5.
+// Q20. Create a copy of an empty slice. Print its length and contents.
+// Q21. Copy a slice, append new elements to the copy, and show that the original remains unchanged.
+// Q22. Copy [5,10,15,20,25]. Modify the copied slice by doubling every element using a loop.
+// Q23. Create a slice of student marks, copy it, increase every copied mark by 5, and print both slices.
 func main() {
 	Q1()
 	Q2()
@@ -178,4 +282,9 @@ func main() {
 	Q11()
 	Q12()
 	Q13()
+	Q14()
+	Q15()
+	Q16()
+	Q17()
+	Q18()
 }
