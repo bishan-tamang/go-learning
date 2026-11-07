@@ -264,10 +264,171 @@ func Q18() {
 }
 
 // Q19. Copy [10,20,30] into a destination slice of length 5.
+func Q19() {
+	var size int
+	fmt.Print("Enter a number of elements: ")
+	// Read the size from the user
+	fmt.Scan(&size)
+
+	numbers := make([]int, size)
+
+	// Loop to take each number from the user
+	for i := 0; i < size; i++ {
+		fmt.Printf("Enter element %d: ", i+1)
+		fmt.Scan(&numbers[i])
+	}
+
+	// Creating destination slice using make() build-in function
+	copiedSlice := make([]int, 5)
+
+	// Copy the slice from source to destination
+	copy(copiedSlice, numbers)
+
+	fmt.Println("Copied Slice:", copiedSlice)
+	fmt.Println("Orginal slice:", numbers)
+}
+
 // Q20. Create a copy of an empty slice. Print its length and contents.
+func Q20() {
+	var size int
+
+	fmt.Print("Enter the number of elements: ")
+
+	// Read the slice size and check for invalid input
+	_, err := fmt.Scan(&size)
+
+	if err != nil {
+		fmt.Println("Invalid input! Please enter an integer.")
+		return
+	}
+
+	// Ensure the slice size is not negative
+	if size < 0 {
+		fmt.Println("Size cannot be negative.")
+		return
+	}
+
+	// Create a slice with the user-specified length
+	numbers := make([]int, size)
+
+	// Take input for each element of the original slice
+	for i := 0; i < size; i++ {
+		fmt.Printf("Enter element %d: ", i+1)
+
+		// Read each element and check for invalid input
+		_, err := fmt.Scan(&numbers[i])
+
+		if err != nil {
+			fmt.Println("Invalid input! Please enter an integer.")
+			return
+		}
+	}
+
+	// Create an empty destination slice with length 0
+	copiedSlice := make([]int, 0)
+
+	// Copy elements from the original slice into the destination slice
+	// No elements are copied because the destination slice has length 0
+	copy(copiedSlice, numbers)
+
+	// Print the copied slice length and contents
+	fmt.Println("Copied slice length:", len(copiedSlice))
+	fmt.Println("Copied slice contents:", copiedSlice)
+
+	// Print the original slice length and contents
+	fmt.Println("Original slice length:", len(numbers))
+	fmt.Println("Original slice contents:", numbers)
+}
+
 // Q21. Copy a slice, append new elements to the copy, and show that the original remains unchanged.
+func Q21() {
+	var size int
+
+	fmt.Print("Enter the number of elements: ")
+
+	// Read and validate the original slice size
+	_, err := fmt.Scan(&size)
+
+	if err != nil {
+		fmt.Println("Invalid input! Please enter an integer.")
+		return
+	}
+
+	if size <= 0 {
+		fmt.Println("Size must be greater than zero.")
+		return
+	}
+
+	// Create the original slice
+	numbers := make([]int, size)
+
+	// Take input for the original slice
+	for i := 0; i < size; i++ {
+		fmt.Printf("Enter element %d: ", i+1)
+
+		_, err := fmt.Scan(&numbers[i])
+
+		if err != nil {
+			fmt.Println("Invalid input! Please enter an integer.")
+			return
+		}
+	}
+
+	// Ask how many new elements the user wants to append
+	var appendSize int
+
+	fmt.Print("\nHow many elements do you want to append? ")
+
+	_, err = fmt.Scan(&appendSize)
+
+	if err != nil {
+		fmt.Println("Invalid input! Please enter an integer.")
+		return
+	}
+
+	if appendSize < 0 {
+		fmt.Println("Number of additional elements cannot be negative.")
+		return
+	}
+
+	// Create a slice to store additional elements
+	newElements := make([]int, appendSize)
+
+	// Take input for additional elements
+	for i := 0; i < appendSize; i++ {
+		fmt.Printf("Enter new element %d: ", i+1)
+
+		_, err := fmt.Scan(&newElements[i])
+
+		if err != nil {
+			fmt.Println("Invalid input! Please enter an integer.")
+			return
+		}
+	}
+
+	// Create a destination slice with the same length as the original
+	copied := make([]int, len(numbers))
+
+	// Copy elements from the original slice
+	copy(copied, numbers)
+
+	// Append all new elements to the copied slice
+	copied = append(copied, newElements...)
+
+	// Display the original and copied slices
+	fmt.Println("\nOriginal slice:", numbers)
+	fmt.Println("Copied slice:", copied)
+}
+
 // Q22. Copy [5,10,15,20,25]. Modify the copied slice by doubling every element using a loop.
+func Q22() {
+
+}
+
 // Q23. Create a slice of student marks, copy it, increase every copied mark by 5, and print both slices.
+func Q23() {
+
+}
 func main() {
 	Q1()
 	Q2()
@@ -287,4 +448,7 @@ func main() {
 	Q16()
 	Q17()
 	Q18()
+	Q19()
+	Q20()
+	Q21()
 }
