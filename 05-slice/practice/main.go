@@ -523,6 +523,31 @@ func Q23() {
 	fmt.Printf("Copied student marks: %v\n", copiedStudentMarks)
 }
 
+// Q24. Create a slice containing five numbers. Find the largest and smallest number using a loop.
+func Q24() {
+	numbers := []int{45, 12, 89, 34, 7, 65}
+
+	if len(numbers) == 0 {
+		fmt.Println("Slice is empty")
+		return
+	}
+
+	largest := numbers[0]
+	smallest := numbers[0]
+
+	for _, n := range numbers {
+		if n > largest {
+			largest = n
+		}
+		if n < smallest {
+			smallest = n
+		}
+	}
+
+	fmt.Println("Largest:", largest)
+	fmt.Println("Smallest:", smallest)
+}
+
 func main() {
 	Q1()
 	Q2()
@@ -547,4 +572,5 @@ func main() {
 	Q21()
 	Q22()
 	Q23()
+	Q24()
 }
