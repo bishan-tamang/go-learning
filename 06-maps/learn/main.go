@@ -63,7 +63,66 @@ func otherCommonMapTypes() {
 
 // Real-world usage: map[string]User for looking up users by username, or map[string]int for counting occurrences.
 
+// 2. Creating maps - the three patterns you need
+// Pattern A: Create and initialize a map
+// Use this when you already know the initial values.
+func createAndInitializeAMap() {
+	ages := map[string]int{
+		"Ram":  22,
+		"Hari": 23,
+	}
+
+	fmt.Println(ages)
+}
+
+// Pattern B: Create an empty map using make
+// Use this when you'll add data later.
+func usingMake() {
+	ages := make(map[string]int)
+	fmt.Println("Before adding keys and values:", ages)
+
+	ages["Bishan"] = 22
+	ages["Mamita"] = 21
+
+	fmt.Println("After adding keys and values:", ages)
+}
+
+// // An empty map created with make is ready for assignments.
+
+// Pattern C: Declare a nil map
+func nilMaps() {
+	var ages map[string]int
+
+	fmt.Println(nil == ages) // Output: true
+	fmt.Println(len(ages))   // Output: 0
+
+	fmt.Println(ages)
+}
+
+// You can read from a nil map, but you cannot assign new entries to it.
+
+// Let's try to assign nil map
+func assignNillMap() {
+	var ages map[string]int
+
+	// ages["Ram"] = 22
+
+	fmt.Println(ages)
+
+	// Output: // PANIC: assignment to entry in nil map
+}
+
+// Remember this distinction:
+// . nil map: can be read but cannot accept assignments.
+// . Initialized empty map: can be read and modified.
+
+// To fix it, initialize the map first using map literal or make.
+// For most practical situations, use a map literal or make.
 func main() {
 	sampleMaps()
 	otherCommonMapTypes()
+	createAndInitializeAMap()
+	usingMake()
+	nilMaps()
+	assignNillMap()
 }
