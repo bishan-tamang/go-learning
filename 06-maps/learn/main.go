@@ -118,6 +118,94 @@ func assignNillMap() {
 
 // To fix it, initialize the map first using map literal or make.
 // For most practical situations, use a map literal or make.
+
+// 3. Add, update, read and delete - the four essential operations.
+// There are the operations you'll used most ofthen.
+
+// A. Add a new key-value pari
+func addNewKeyValue() {
+	// Using make
+	ages := make(map[string]int)
+
+	ages["Ram"] = 21
+	ages["Hari"] = 22
+
+	fmt.Println(ages)
+
+	// If a key is not in the map, Go automatically adds it with the given value.
+
+	// Using map literal
+	userIds := map[int]string{
+		101: "Bishan",
+		102: "Mamita",
+	}
+
+	userIds[103] = "Sophia"
+
+	fmt.Println(userIds)
+}
+
+// B. Update an existing value
+func updateAnExistingValue() {
+	prices := map[string]float64{
+		"Laptop": 499.99,
+		"PS5":    999.99,
+	}
+
+	fmt.Println("Before update an exixting value: ", prices)
+
+	prices["PS5"] = 799.00
+	fmt.Println("After update an existing vlaue: ", prices)
+
+	prices["Mouse"] = 49.99 // Creates a new entry
+	fmt.Println(prices)
+}
+
+// Remember:
+// . If PS5 already exists, its value is replaced. If it doesn't exist, the assignment creates a new entry (one complete key-value pair).
+
+// Remember:
+// . Entry means One complete key-value pair in a map.
+
+// C. Read/Access a value from map
+func accessAValueFromMap() {
+	// Studnet mark
+	marks := map[string]int{
+		"Bishan": 99,
+		"Mamita": 98,
+	}
+
+	fmt.Println("The mark of Bishan is", marks["Bishan"]) // Output: 99
+
+	// What if the key doen't exit?
+	fmt.Println(marks["Sophia"]) // Output: 0
+}
+
+// Because the value type is int, So Go returns it zero vlaue, 0, when the key doen't exist. It doen't throw an error.
+// This creates an important problem: how do you distinguish a missing key from a key whose value is actually 0?
+// We'll solve that next.
+
+// D. Delete an entry
+func deleteAnEntry() {
+	ages := map[string]int{
+		"Mamita": 21,
+		"Bishan": 22,
+		"Hari":   23,
+	}
+
+	fmt.Println("Before delete an entry:", ages)
+
+	delete(ages, "Hari")
+	fmt.Println("Afte delete an entry:", ages)
+	// If key exists, it's removed.
+
+	delete(ages, "Sita")
+	fmt.Println("Delete an non-existing entry:", ages)
+	// If doesn't exist, delete does nothing.
+}
+
+// There four operations from the foundation of almost evey map-based program.
+
 func main() {
 	sampleMaps()
 	otherCommonMapTypes()
@@ -125,4 +213,8 @@ func main() {
 	usingMake()
 	nilMaps()
 	assignNillMap()
+	addNewKeyValue()
+	updateAnExistingValue()
+	accessAValueFromMap()
+	deleteAnEntry()
 }
