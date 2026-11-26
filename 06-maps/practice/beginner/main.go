@@ -14,9 +14,9 @@ import "fmt"
 // 3. Update your profession.
 // 4. Print the updated information.
 func personalInfromation() {
-	personalInfo := map[string]string{
+	personalInfo := map[string]any{
 		"Name":       "Bishan Tamang",
-		"Age":        "22",
+		"Age":        22,
 		"City":       "Kathmandu",
 		"Profession": "Junior Backend Developer",
 	}
@@ -42,23 +42,23 @@ func personalInfromation() {
 // 3. Delete Hari.
 // 4. Print all student records.
 func studentManagement() {
-	student := map[string]int{
+	students := map[string]int{
 		"Bishan": 85,
 		"Ram":    75,
 		"Hari":   90,
 	}
 
 	// 1. Add Sita with 88 marks.
-	student["Sita"] = 88
+	students["Sita"] = 88
 
 	// 2. Update Ram's marks to 80.
-	student["Ram"] = 80
+	students["Ram"] = 80
 
 	// 3. Delete Hari.
-	delete(student, "Hari")
+	delete(students, "Hari")
 
 	// 4. Print all student records.
-	fmt.Println("All student records:", student)
+	fmt.Println("All student records:", students)
 }
 
 // Exercise 3: Product Inventory
@@ -70,9 +70,9 @@ func studentManagement() {
 // 4. Print the final inventory.
 func productInventory() {
 	inventory := map[string]int{
-		"Laptop":  10,
-		"Mouse":   20,
-		"Keyword": 15,
+		"Laptop":   10,
+		"Mouse":    20,
+		"Keyboard": 15,
 	}
 
 	// 1. Add Monitor with quantity 5.
@@ -82,7 +82,7 @@ func productInventory() {
 	inventory["Mouse"] = 25
 
 	// 3. Delete Keyboard.
-	delete(inventory, "Keyword")
+	delete(inventory, "Keyboard")
 
 	// 4. Print the final inventory.
 	fmt.Println("The final inventory:", inventory)
