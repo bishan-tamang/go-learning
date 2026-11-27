@@ -206,6 +206,85 @@ func deleteAnEntry() {
 
 // There four operations from the foundation of almost evey map-based program.
 
+// 5. The comma-ok pattern - one of the most important Go pattern
+// Suppose you have this map.
+func commaOk() {
+	stock := map[string]int{
+		"Laptop": 10,
+		"Mouse":  0,
+	}
+
+	// If you access a missing key, the result is 0.
+	fmt.Println(stock["Keyboard"]) // Output: 0
+
+	// But "Mouse" also has a stock value of 0.
+	fmt.Println(stock["Mouse"]) // Output: 0
+}
+
+// Use the comma-ok pattern to check whether the key exits.
+func commaOkPattern() {
+	stock := map[string]int{
+		"Laptop": 10,
+		"Mouse":  0,
+	}
+
+	quantity, ok := stock["Mouse"]
+
+	if ok {
+		fmt.Println("Stock:", quantity)
+	} else {
+		fmt.Println("Product not found!")
+	}
+
+	// Output: Stock: 0
+}
+
+// Now try a missing product:
+func missingProduct() {
+	stock := map[string]int{
+		"Laptop": 10,
+		"Mouse":  0,
+	}
+
+	quantity, ok := stock["Keyboard"]
+
+	if !ok {
+		fmt.Println("Product not found")
+	} else {
+		fmt.Println("Stock:", quantity)
+	}
+
+	// Output: Product not found
+}
+
+// The key idea is:
+// value, ok := myMap[key]
+// . value contains the value stored in the map
+// . ok tells you whether the key exist (true) or doen't exist (false).
+// . If the key doesn't exist, value gets the zero value of its data type.
+// . Even if the stored value is 0, false, or "", ok will still be true if the key exist.
+
+// Remember: value tells you what is stored, and ok tells you whether the key exist.
+
+// A real-world example: user lookup
+func realWorldExample() {
+	users := map[int]string{
+		101: "Ram",
+		102: "Sita",
+	}
+
+	id := 103
+
+	name, ok := users[id]
+
+	if !ok {
+		fmt.Println("User not found")
+		return
+	}
+
+	fmt.Println(name)
+}
+
 func main() {
 	sampleMaps()
 	otherCommonMapTypes()
@@ -217,4 +296,8 @@ func main() {
 	updateAnExistingValue()
 	accessAValueFromMap()
 	deleteAnEntry()
+	commaOk()
+	commaOkPattern()
+	missingProduct()
+	realWorldExample()
 }
