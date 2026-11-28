@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"sort"
+)
 
 // 1. What is maps?
 // A map is a built-in data structure that stores data in key-value pairs, allowing us to access, add, update, and delete values using their keys.
@@ -285,6 +288,88 @@ func realWorldExample() {
 	fmt.Println(name)
 }
 
+// 6. Looping through maps with range
+// You can also range to process every entry in a map.
+func loopingWithRange() {
+	marks := map[string]int{
+		"Ram":  85,
+		"Sita": 92,
+		"Hari": 78,
+	}
+
+	// Loop through range
+	for studentName, mark := range marks {
+		fmt.Println(studentName, mark)
+	}
+}
+
+// This print each student name and mark, but the order is not guaranted.
+// For example, you might see Ram first in one run and Hari in another. Don't rely on map iteration order.
+
+// loop through only the keys
+func loopThroughOnlyKeys() {
+	marks := map[string]int{
+		"Ram":  85,
+		"Sita": 92,
+		"Hari": 78,
+	}
+
+	// Loop through only the keys
+	for name := range marks {
+		fmt.Println("Only key:", name)
+	}
+}
+
+// Loop through only the values
+func loopThroughOnlyValues() {
+	marks := map[string]int{
+		"Ram":  85,
+		"Sita": 92,
+		"Hari": 78,
+	}
+
+	// Loop through only the values
+	for _, mark := range marks {
+		fmt.Println("Only value:", mark)
+	}
+
+	// The underscore _ ignores the key.
+}
+
+// When you need to sorted output
+// If you need a consistent order, such an in reports or tests, collect the keys and sort them.
+// In Go, you can not directly sort a map. Go maps do not maintain a guaranteed order.
+
+// If you want sorted output from a a map, you should:
+// 1. Collect the map keys into a slice.
+// 2. Sort the slice
+// 3. Loop through the sorted slice
+// 4. Access the map values using those keys.
+
+func sortedOutput() {
+	marks := map[string]int{
+		"Ram":  85,
+		"Sita": 92,
+		"Hari": 78,
+	}
+
+	names := make([]string, 0, len(marks))
+
+	for name := range marks {
+		names = append(names, name)
+	}
+
+	sort.Strings(names)
+
+	for _, name := range names {
+		fmt.Println(name, marks[name])
+	}
+}
+
+// Now the output is correctly ordered alphabetically by name.
+
+// Remember: Maps are excellent for lookup. Slice are useful when you need ordering. In Go, you'll often use them together.
+
 func main() {
 	sampleMaps()
 	otherCommonMapTypes()
@@ -300,4 +385,8 @@ func main() {
 	commaOkPattern()
 	missingProduct()
 	realWorldExample()
+	loopingWithRange()
+	loopThroughOnlyKeys()
+	loopThroughOnlyValues()
+	sortedOutput()
 }
